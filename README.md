@@ -16,6 +16,15 @@ The following hardware are supported by the Calaos team:
 
 Other hardware may be supported but only those one are heavily tested by us. Feel free to try to port to a new hardware, and come to check with us for all the details. Note, raspberry pi does not support full a full calaos-os build currently build the calaos-os-server (for server/webapp usage).
 
+Valid raspberrypi targets accepted: (but not supported and wont necessarily build)
+
+raspberrypi
+raspberrypi2
+raspberrypi3
+raspberrypi3-64
+raspberrypi4
+raspberrypi4-64
+
 How to build
 ------------
 
