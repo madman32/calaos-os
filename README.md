@@ -14,7 +14,7 @@ The following hardware are supported by the Calaos team:
 - NUC intel platform
 - Cubieboard
 
-Other hardware may be supported but only those one are heavily tested by us. Feel free to try to port to a new hardware, and come to check with us for all the details.
+Other hardware may be supported but only those one are heavily tested by us. Feel free to try to port to a new hardware, and come to check with us for all the details. Note, raspberry pi does not support full a full calaos-os build currently build the calaos-os-server (for server/webapp usage).
 
 How to build
 ------------
@@ -25,7 +25,6 @@ You need first install Yocto dependencies, on ubuntu machine you need to install
 ```
 sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath libsdl1.2-dev xterm man
 ```
-
 Launch the build script without arguments to get the list of options and supported machines:
 ```bash
 ./build.sh
@@ -48,3 +47,22 @@ bitbake calaos-os
 ```
 
 You will find the images in tmp-eglibc/deploy/images/
+
+How to build docker
+------------
+Use the prebuilt docker image madman32/calaos-os-build:latest to build inside a prebuilt environment to minimize errors/improve compatability.
+Install docker as described here https://docs.docker.com/engine/install/ubuntu/
+
+Pull and run the docker image with the following commands:
+```
+docker pull madman32/calaos-os-build:latest
+docker run -it --network host -v /path/to/local/checked/out/version/calaos-os/:/home/dev build:latest
+```
+
+Build as described above by running the following commands (raspberrypi3 as an example)
+```
+./build.sh init raspberrypi3
+source ./env.sh
+bitbake calaos-os-server
+```
+You will find the images in tmp-glibc/deploy/images/raspberrypi3/calaos-os-raspberrypi3.rpi-sdimg (which can be flashed to sd card via dd)
